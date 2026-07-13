@@ -1,3 +1,4 @@
+import PublicHeader from "@/components/Header/PublicHeader";
 import ThemeProvider from "@/components/Providers/ThemeProvider";
 import { notoSansHeading, nunitoSans } from "@/lib/fonts";
 import { RootLayoutProps } from "@/lib/type";
@@ -20,6 +21,7 @@ const RootLayout = ({ children }: RootLayoutProps) => {
           attribute={"class"}
           defaultTheme="dark"
           enableSystem={false}>
+          <PublicHeader />
           <main className="mx-auto max-w-7xl">{children}</main>
         </ThemeProvider>
       </body>
