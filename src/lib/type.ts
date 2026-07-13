@@ -7,3 +7,13 @@ export type RootLayoutProps = Readonly<{
 export type LayoutChildrenProps = Readonly<{
   children: ReactNode;
 }>;
+
+export type Swatch = {
+  id: string;
+  kind: "phone" | "desktop";
+  position: string;
+  gradient: string;
+  delay: string;
+  duration: string;
+  faded?: boolean;
+};
