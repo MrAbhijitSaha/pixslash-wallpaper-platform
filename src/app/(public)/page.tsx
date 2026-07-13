@@ -9,18 +9,20 @@ export const metadata: Metadata = {
     "The best free stock photos, royalty free images & Wallpapers shared by creators. Discover, collect stunning wallpapers. PixSlash  is your destination for high-quality wallpapers.",
 };
 
-const page = async () => {
+const page = () => {
   return (
     <section className="grid h-[80dvh] place-items-center px-6">
       {/* floting element bg */}
       <HomeFloatingElements />
 
       <div className="z-10 mx-auto max-w-2xl text-center">
+        {/* badge  */}
         <span className="border-border/60 bg-muted/40 text-muted-foreground mb-6 inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium backdrop-blur-sm">
           <span className="inline-flex size-1.5 rounded-full bg-emerald-500"></span>
           New wallpapers added every week
         </span>
 
+        {/* text section  */}
         <h1 className="text-5xl font-medium tracking-tight sm:text-6xl lg:text-7xl">
           Wallpapers,
           <br />
@@ -35,7 +37,8 @@ const page = async () => {
           your favourites, and share the ones you make.
         </p>
 
-        <div className="mt-4 space-x-4">
+        {/* cta buttons  */}
+        <div className="mt-4 space-y-2 md:flex md:items-center md:justify-center md:gap-4">
           <NavigateButton
             className="group hover:bg-black dark:bg-white"
             buttonVariant="default"
