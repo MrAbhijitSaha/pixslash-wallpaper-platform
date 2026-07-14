@@ -44,7 +44,7 @@ const RegisterForm = () => {
         control={control}
         render={({ field, fieldState }) => (
           <Field data-invalid={fieldState.invalid}>
-            <FieldLabel htmlFor={field.name}>Name </FieldLabel>
+            <FieldLabel htmlFor={field.name}>Name</FieldLabel>
             <Input
               {...field}
               type="text"
@@ -65,13 +65,13 @@ const RegisterForm = () => {
         control={control}
         render={({ field, fieldState }) => (
           <Field data-invalid={fieldState.invalid}>
-            <FieldLabel htmlFor={field.name}>Email Address </FieldLabel>
+            <FieldLabel htmlFor={field.name}>Email Address</FieldLabel>
             <Input
               {...field}
               type="email"
               id={field.name}
               aria-invalid={fieldState.invalid}
-              placeholder=" Email address"
+              placeholder="Email address"
               autoComplete="email"
             />
 
