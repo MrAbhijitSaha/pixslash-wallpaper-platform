@@ -18,7 +18,7 @@ const LoginForm = () => {
     handleSubmit,
     control,
     reset,
-    formState: { isSubmitting },
+    formState: { isSubmitting, isValid },
   } = useForm<LoginSchemaType>({
     resolver: zodResolver(loginSchema),
 
@@ -95,7 +95,7 @@ const LoginForm = () => {
       <Button
         type="submit"
         className="w-full py-4"
-        disabled={isSubmitting}>
+        disabled={isSubmitting || !isValid}>
         {isSubmitting ?
           <Spinner />
         : "Login"}

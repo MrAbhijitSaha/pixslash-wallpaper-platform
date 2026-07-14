@@ -18,7 +18,7 @@ const RegisterForm = () => {
     handleSubmit,
     control,
     reset,
-    formState: { isSubmitting },
+    formState: { isSubmitting, isValid },
   } = useForm<RegisterSchemaType>({
     resolver: zodResolver(registerSchema),
 
@@ -109,7 +109,7 @@ const RegisterForm = () => {
       <Button
         type="submit"
         className="w-full py-4"
-        disabled={isSubmitting}>
+        disabled={isSubmitting || !isValid}>
         {isSubmitting ?
           <Spinner />
         : "Register"}
