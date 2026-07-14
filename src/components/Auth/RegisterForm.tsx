@@ -50,32 +50,48 @@ const RegisterForm = () => {
               type="text"
               id={field.name}
               aria-invalid={fieldState.invalid}
+              aria-describedby={
+                fieldState.invalid ? `${field.name}-error` : undefined
+              }
               placeholder="Full name"
               autoComplete="name"
             />
 
-            {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+            {fieldState.invalid && (
+              <FieldError
+                id={`${field.name}-error`}
+                errors={[fieldState.error]}
+              />
+            )}
           </Field>
         )}
       />
 
-      {/* user email address field  */}
       <Controller
         name="emailAddress"
         control={control}
         render={({ field, fieldState }) => (
           <Field data-invalid={fieldState.invalid}>
             <FieldLabel htmlFor={field.name}>Email Address</FieldLabel>
+
             <Input
               {...field}
               type="email"
               id={field.name}
               aria-invalid={fieldState.invalid}
+              aria-describedby={
+                fieldState.invalid ? `${field.name}-error` : undefined
+              }
               placeholder="Email address"
               autoComplete="email"
             />
 
-            {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+            {fieldState.invalid && (
+              <FieldError
+                id={`${field.name}-error`}
+                errors={[fieldState.error]}
+              />
+            )}
           </Field>
         )}
       />
@@ -92,11 +108,19 @@ const RegisterForm = () => {
               type="password"
               id={field.name}
               aria-invalid={fieldState.invalid}
+              aria-describedby={
+                fieldState.invalid ? `${field.name}-error` : undefined
+              }
               placeholder="Password"
               autoComplete="off"
             />
 
-            {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+            {fieldState.invalid && (
+              <FieldError
+                id={`${field.name}-error`}
+                errors={[fieldState.error]}
+              />
+            )}
           </Field>
         )}
       />
@@ -113,11 +137,19 @@ const RegisterForm = () => {
               type="password"
               id={field.name}
               aria-invalid={fieldState.invalid}
+              aria-describedby={
+                fieldState.invalid ? `${field.name}-error` : undefined
+              }
               placeholder="Confirm password"
               autoComplete="off"
             />
 
-            {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+            {fieldState.invalid && (
+              <FieldError
+                id={`${field.name}-error`}
+                errors={[fieldState.error]}
+              />
+            )}
           </Field>
         )}
       />
