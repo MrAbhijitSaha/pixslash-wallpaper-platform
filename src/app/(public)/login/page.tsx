@@ -1,5 +1,6 @@
 import LoginForm from "@/components/Auth/Login/LoginForm";
 import NavigateButton from "@/components/Buttons/NavigateButton";
+import OAuthButton from "@/components/Buttons/OAuthButton";
 import {
   Card,
   CardContent,
@@ -32,6 +33,17 @@ const page = () => {
           <LoginForm />
         </CardContent>
 
+        {/* social login buttons  */}
+        <section className="grid grid-cols-2 gap-4 py-3">
+          <OAuthButton
+            label="Google"
+            socialProviders="google"
+          />
+          <OAuthButton
+            label="Facebook"
+            socialProviders="facebook"
+          />
+        </section>
         <CardFooter>
           {/* additonal link  */}
           <CardDescription className="mx-auto">
