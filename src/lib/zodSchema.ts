@@ -26,3 +26,15 @@ export const registerSchema = z
     error: "Password didn't match",
     path: ["confirmPassword"],
   });
+
+export const loginSchema = z.object({
+  emailAddress: z
+    .email({ error: "Please provide a valid email address" })
+    .trim()
+    .toLowerCase(),
+  password: z
+    .string()
+    .min(8, { error: "Password must be at least 8 characters long" })
+    .max(128, { error: "password must not exceed 128 characters" }),
+  rememberMe: z.boolean(),
+});
