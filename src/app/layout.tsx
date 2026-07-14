@@ -23,7 +23,7 @@ const RootLayout = ({ children }: RootLayoutProps) => {
           defaultTheme="dark"
           enableSystem={false}>
           <PublicHeader />
-          <main className="mx-auto max-w-7xl pb-16">{children}</main>
+          <main className="mx-auto max-w-7xl pb-16 lg:pb-0">{children}</main>
           <MobileBottomNav />
         </ThemeProvider>
       </body>
