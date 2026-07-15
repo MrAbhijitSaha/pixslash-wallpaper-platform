@@ -2,18 +2,23 @@
 
 import { Button } from "@/components/shadcnui/button";
 import { Spinner } from "@/components/shadcnui/spinner";
+import { authClient } from "@/lib/auth-client";
 import { LoginSchemaType } from "@/lib/type";
 import { loginSchema } from "@/lib/zodSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import FieldLogin from "./FieldLogin";
 
 const LoginForm = () => {
+  const { push } = useRouter();
+
   const {
     handleSubmit,
     control,
     reset,
-    formState: { isSubmitting },
+    formState: { isSubmitting, isValid },
   } = useForm<LoginSchemaType>({
     resolver: zodResolver(loginSchema),
 
@@ -26,10 +31,32 @@ const LoginForm = () => {
     mode: "all",
   });
 
-  const submitLoginData = (slData: LoginSchemaType) => {
-    // TODO: replace with actual registration API call
-    console.log(slData);
-    reset();
+  const submitLoginData = async ({
+    emailAddress,
+    password,
+    rememberMe,
+  }: LoginSchemaType) => {
+    try {
+      const { error } = await authClient.signIn.email({
+        email: emailAddress,
+        password,
+        rememberMe,
+      });
+
+      if (error) {
+        console.error(error);
+        toast.error("Login failed. Please try again.");
+      } else {
+        toast.success("Login successful!");
+
+        reset();
+
+        push("/wallpapers");
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error("Login failed. Please try again.");
+    }
   };
   return (
     <form
@@ -68,7 +95,7 @@ const LoginForm = () => {
       <Button
         type="submit"
         className="w-full py-4"
-        disabled={isSubmitting}>
+        disabled={isSubmitting || !isValid}>
         {isSubmitting ?
           <Spinner />
         : "Login"}
