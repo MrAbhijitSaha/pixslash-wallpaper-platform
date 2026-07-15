@@ -73,7 +73,9 @@ function PublicBottomNav() {
             href={item.navLink}
             aria-current={isActive ? "page" : undefined}
             className={`${
-              isActive ? "text-white" : "text-muted-foreground hover:text-white"
+              isActive ?
+                "text-black dark:text-white"
+              : "text-muted-foreground hover:text-white"
             } flex flex-col items-center`}>
             <item.icon size={16} />
             {item.label}
