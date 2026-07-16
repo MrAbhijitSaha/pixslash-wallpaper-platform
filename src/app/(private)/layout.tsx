@@ -1,5 +1,6 @@
 import AppSidebar from "@/components/Dashboard/AppSidebar";
-import PrivetHeader from "@/components/Header/PrivateHeader";
+import PrivateHeader from "@/components/Header/PrivateHeader";
+
 import { SidebarInset, SidebarProvider } from "@/components/shadcnui/sidebar";
 import { auth } from "@/lib/auth";
 import { LayoutChildrenProps } from "@/lib/type";
@@ -18,7 +19,7 @@ const PrivateLayout = async ({ children }: LayoutChildrenProps) => {
     <SidebarProvider>
       <AppSidebar userId={session.user.id} />
       <SidebarInset>
-        <PrivetHeader />
+        <PrivateHeader />
         {children}
       </SidebarInset>
     </SidebarProvider>
