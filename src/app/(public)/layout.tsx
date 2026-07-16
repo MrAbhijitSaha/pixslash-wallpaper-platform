@@ -11,7 +11,7 @@ const PublicLayout = async ({ children }: LayoutChildrenProps) => {
     headers: await headers(),
   });
 
-  if (session?.session.id) {
+  if (session) {
     return (
       <SidebarProvider>
         <AppSidebar userId={session.user.id} />
