@@ -17,7 +17,7 @@ const PublicLayout = async ({ children }: LayoutChildrenProps) => {
         <AppSidebar userId={session.user.id} />
         <SidebarInset>
           <PrivetHeader />
-          <main className="px-6 py-4">{children}</main>
+          <div className="px-6 py-4">{children}</div>
         </SidebarInset>
       </SidebarProvider>
     );
