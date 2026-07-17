@@ -48,7 +48,8 @@ const SingleWallpaperCard = ({ wallpaperinfo }: SingleWallpaperCardProps) => {
                 {wallpaper.user?.name ?? "Unknown creator"}
               </p>
               <p className="text-xs text-zinc-400">
-                Posted {new Date(wallpaper.createdAt).toLocaleDateString()}
+                Posted{" "}
+                {new Date(wallpaper.createdAt).toLocaleDateString("en-GB")}
               </p>
             </div>
           </div>
