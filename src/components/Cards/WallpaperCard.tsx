@@ -1,6 +1,8 @@
 import { WallpaperInfo } from "@/lib/demoWallpapersData";
+import { DownloadIcon, HeartIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { Button } from "../shadcnui/button";
 import { Card } from "../shadcnui/card";
 
 type WallpaperCardProps = {
@@ -32,20 +34,25 @@ const WallpaperCard = ({ wallpaperinfo }: WallpaperCardProps) => {
             </p>
           </div>
 
-          <div className="flex shrink-0 items-center gap-2 rounded-full border border-zinc-500/50 opacity-90 transition-opacity duration-200 group-hover:opacity-100">
-            {/* <LikeButton
-              initialLikesCount={wallpaperinfo._count.likes}
-              initialLiked={wallpaperinfo.likes.length > 0}
-              wallpaperId={wallpaperinfo.id}
-              className="bg-transparent text-white hover:bg-transparent active:bg-transparent"
-            /> */}
+          <div className="flex shrink-0 items-center rounded-full border border-zinc-500/50 opacity-90 transition-opacity duration-200 group-hover:opacity-100">
+            <Button
+              variant={"default"}
+              size="sm"
 
-            {/* <DownloadButton
-              wallpaperId={wallpaperinfo.id}
-              imagePath={wallpaperinfo.image}
-              className="text-white"
-              downloadCount={wallpaperinfo.downloadCount}
-            /> */}
+              className="bg-transparent text-white hover:bg-transparent active:bg-transparent">
+              <HeartIcon className="h-4 w-4 fill-current text-red-500" />
+              <span>{wallpaperinfo.likeCount}</span>
+            </Button>
+
+            <Button
+              className={
+                "bg-transparent text-white hover:bg-transparent active:bg-transparent"
+              }
+              variant="default"
+              aria-label="Download Wallpaper">
+              <DownloadIcon className="h-4 w-4" />
+              {wallpaperinfo.downloadCount}
+            </Button>
           </div>
         </div>
       </Link>
