@@ -1,7 +1,6 @@
-import LogoutButton from "@/components/Buttons/LogoutButton";
-import { auth } from "@/lib/auth";
+import MasonryGrid from "@/components/Cards/MasonryGrid";
+import { wallpapers } from "@/lib/demoWallpapersData";
 import { Metadata } from "next";
-import { headers } from "next/headers";
 
 export const metadata: Metadata = {
   title: "Pixslash | Wallpapers",
@@ -10,19 +9,10 @@ export const metadata: Metadata = {
 };
 
 const page = async () => {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
-
   return (
-    <div className="grid h-dvh place-items-center">
-      <div className="">
-        All wallpapers
-        {session ?
-          <LogoutButton />
-        : null}
-      </div>
-    </div>
+    <>
+      <MasonryGrid wallpapers={wallpapers} />
+    </>
   );
 };
 

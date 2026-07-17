@@ -151,3 +151,19 @@
     transform: translate3d(0, -14px, 0);
   }
 }
+
+
+.masonry-grid {
+  display: flex;
+  margin-left: -12px;
+  width: auto;
+}
+
+.masonry-grid-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-left: 12px;
+  background-clip: padding-box;
+}
