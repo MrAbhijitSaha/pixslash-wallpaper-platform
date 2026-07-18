@@ -1,6 +1,7 @@
 import AddImage from "@/components/Profile/AddImage";
 import AddProfileInformation from "@/components/Profile/AddProfileInformation";
 import ChangePassword from "@/components/Profile/ChangePassword";
+import DeleteAcount from "@/components/Profile/DeleteAcount";
 import {
   Card,
   CardContent,
@@ -10,6 +11,7 @@ import {
 } from "@/components/shadcnui/card";
 import getUserProfile from "@/server/profile/getUserProfile";
 import { Separator } from "@base-ui/react";
+import { Trash2Icon } from "lucide-react";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
@@ -79,6 +81,28 @@ const page = async ({ params }: PageProps) => {
 
         <CardContent>
           <ChangePassword />
+        </CardContent>
+      </Card>
+
+      {/* Delete Account  */}
+
+      <Card className="">
+        <CardHeader className="flex items-center gap-3 text-red-400">
+          <Trash2Icon />
+          <CardTitle className="mt-1 text-xl font-semibold">
+            Danger Zone
+          </CardTitle>
+        </CardHeader>
+
+        <CardContent>
+          <CardDescription>
+            Once you delete your account, there is no going back. All your
+            wallpapers, collections, and data will be permanently removed.
+          </CardDescription>
+
+          <div className="mt-4 flex justify-end">
+            <DeleteAcount />
+          </div>
         </CardContent>
       </Card>
     </section>
