@@ -4,6 +4,13 @@ import "./src/lib/env/serverEnv";
 
 const nextConfig: NextConfig = {
   /* config options here */
+
+  experimental: {
+    serverActions: {
+      bodySizeLimit: "12mb",
+    },
+  },
+
   reactCompiler: true,
   typedRoutes: true,
 };

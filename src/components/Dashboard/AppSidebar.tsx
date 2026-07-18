@@ -70,7 +70,7 @@ const AppSidebar = ({ userId }: AppSidebarProps) => {
           <SidebarMenuItem>
             <SidebarMenuButton
               size="lg"
-              render={<Link href={"/" as Route} />}>
+              render={<Link href={"/wallpapers" as Route} />}>
               <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-xl">
                 P
               </div>

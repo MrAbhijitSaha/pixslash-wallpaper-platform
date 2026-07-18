@@ -1,5 +1,5 @@
 import MasonryGrid from "@/components/Cards/MasonryGrid";
-import { wallpapers } from "@/lib/demoWallpapersData";
+import getAllWallpaper from "@/server/wallpaper/getAllWallpaper";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -9,6 +9,13 @@ export const metadata: Metadata = {
 };
 
 const page = async () => {
+  const wallpapers = await getAllWallpaper();
+
+  if (wallpapers.length === 0) {
+    return (
+      <div className="grid h-dvh place-items-center">No wallpapers found</div>
+    );
+  }
   return (
     <>
       <MasonryGrid wallpapers={wallpapers} />

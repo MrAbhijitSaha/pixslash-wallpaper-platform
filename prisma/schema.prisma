@@ -12,30 +12,41 @@ datasource db {
 }
 
 model User {
-  id            String    @id
+  id            String   @id @default(uuid())
   name          String
   email         String
-  emailVerified Boolean   @default(false)
+  emailVerified Boolean  @default(false)
   image         String?
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-  sessions      Session[]
-  accounts      Account[]
+  mobileNumber  String?
+  bio           String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // Relations
+  sessions   Session[]
+  accounts   Account[]
+  wallpapers Wallpaper[]
+  likes      Like[]
+  saved      SavedPost[]
+  downloads  Download[]
 
   @@unique([email])
+  @@unique([mobileNumber])
   @@map("user")
 }
 
 model Session {
-  id        String   @id
+  id        String   @id @default(uuid())
   expiresAt DateTime
   token     String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   ipAddress String?
   userAgent String?
-  userId    String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Relations
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  userId String
 
   @@unique([token])
   @@index([userId])
@@ -43,11 +54,10 @@ model Session {
 }
 
 model Account {
-  id                    String    @id
-  accountId             String
-  providerId            String
-  userId                String
-  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id         String @id @default(uuid())
+  accountId  String
+  providerId String
+
   accessToken           String?
   refreshToken          String?
   idToken               String?
@@ -58,7 +68,10 @@ model Account {
   createdAt             DateTime  @default(now())
   updatedAt             DateTime  @updatedAt
 
-  @@index([userId])
+  // Relations 
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  userId String
+
   @@map("account")
 }
 
@@ -72,4 +85,97 @@ model Verification {
 
   @@index([identifier])
   @@map("verification")
+}
+
+model Wallpaper {
+  id           String   @id @default(uuid())
+  slug         String   @unique
+  title        String
+  thumbnailUrl String?
+  imageUrl     String
+  width        Int?
+  height       Int?
+  fileSize     Int?
+  format       String?
+  isPublic     Boolean  @default(true)
+  isFeatured   Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  // Relations 
+  userId        String?
+  user          User?       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  likes         Like[]
+  category      Category?   @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  categoryId    String?
+  saved         SavedPost[]
+  downloads     Download[]
+  downloadCount Int         @default(0)
+
+  @@index([categoryId])
+  @@index([userId])
+  @@index([isPublic])
+  @@index([isFeatured])
+  @@map("wallpaper")
+}
+
+model Category {
+  id           String   @id @default(uuid())
+  categoryName String   @unique
+  slug         String   @unique
+  image        String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  // Relations 
+  wallpapers Wallpaper[]
+
+  @@map("category")
+}
+
+model Like {
+  userId      String
+  wallpaperId String
+  createdAt   DateTime @default(now())
+
+  // Relations 
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  wallpaper Wallpaper @relation(fields: [wallpaperId], references: [id])
+
+  @@id([userId, wallpaperId])
+  @@index([wallpaperId])
+  @@map("like")
+}
+
+model SavedPost {
+  id String @id @default(uuid())
+
+  wallpaperId String
+  userId      String
+
+  createdAt DateTime @default(now())
+
+  // Relations 
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  wallpaper Wallpaper @relation(fields: [wallpaperId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, wallpaperId])
+  @@index([wallpaperId])
+  @@index([userId])
+  @@map("savedpost")
+}
+
+model Download {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+
+  wallpaperId String
+  wallpaper   Wallpaper @relation(fields: [wallpaperId], references: [id], onDelete: Cascade)
+
+  userId String?
+  user   User?   @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([wallpaperId])
+  @@index([userId])
+  @@map("download")
 }
