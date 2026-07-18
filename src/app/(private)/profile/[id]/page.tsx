@@ -1,5 +1,12 @@
 import AddImage from "@/components/Profile/AddImage";
-import { Card, CardDescription, CardTitle } from "@/components/shadcnui/card";
+import AddProfileInformation from "@/components/Profile/AddProfileInformation";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/shadcnui/card";
 import getUserProfile from "@/server/profile/getUserProfile";
 import { Separator } from "@base-ui/react";
 import { Metadata } from "next";
@@ -42,6 +49,24 @@ const page = async ({ params }: PageProps) => {
         {/* update img  */}
         <AddImage info={userInfo} />
       </div>
+
+      {/* update information  */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-2xl font-semibold">
+            Profile Information
+          </CardTitle>
+        </CardHeader>
+
+        <CardContent>
+          <div className="mb-4">
+            <CardTitle>Email</CardTitle>
+            <CardDescription>{userInfo.email}</CardDescription>
+          </div>
+
+          <AddProfileInformation info={userInfo} />
+        </CardContent>
+      </Card>
     </section>
   );
 };
