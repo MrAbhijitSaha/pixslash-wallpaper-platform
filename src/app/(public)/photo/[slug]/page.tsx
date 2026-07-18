@@ -7,16 +7,16 @@ import { notFound } from "next/navigation";
 
 type PageProps = {
   params: Promise<{
-    imgId: string;
+    slug: string;
   }>;
 };
 
 export const generateMetadata = async ({ params }: PageProps) => {
-  const { imgId } = await params;
+  const { slug } = await params;
 
   const wallpaper = await prisma.wallpaper.findUnique({
     where: {
-      slug: imgId,
+      slug: slug,
       isPublic: true,
     },
     select: {
@@ -36,8 +36,8 @@ export const generateMetadata = async ({ params }: PageProps) => {
 };
 
 const page = async ({ params }: PageProps) => {
-  const { imgId } = await params;
-  const wallpaper = await getSingleWallpaper({ imgId });
+  const { slug } = await params;
+  const wallpaper = await getSingleWallpaper({ imgId: slug });
 
   const session = await auth.api.getSession({
     headers: await headers(),
@@ -81,7 +81,6 @@ const page = async ({ params }: PageProps) => {
       <SingleWallpaperCard
         getDetails={wallpaper}
         isLiked={isLiked}
-        isSaved={isSaved}
       />
     </div>
   );

@@ -7,11 +7,13 @@ import LikeButton from "./Actions/LikeButton ";
 
 type SingleWallpaperCardProps = {
   getDetails: SingleWallpaperCardPropsType;
-  isLiked?: boolean;
-  isSaved?: boolean;
+  isLiked: boolean;
 };
 
-const SingleWallpaperCard = ({ getDetails }: SingleWallpaperCardProps) => {
+const SingleWallpaperCard = ({
+  getDetails,
+  isLiked,
+}: SingleWallpaperCardProps) => {
   return (
     <div className="w-7xl space-y-5 rounded-xl border p-6 pt-0 shadow-none ring-0">
       <Image
@@ -63,8 +65,7 @@ const SingleWallpaperCard = ({ getDetails }: SingleWallpaperCardProps) => {
             <LikeButton
               wallpaperId={getDetails.id}
               initialCount={getDetails._count.likes}
-              initialLiked={true}
-              // initialLiked={getDetails.isLiked}
+              initialLiked={isLiked}
               tooltipContent="I love this"
             />
 
