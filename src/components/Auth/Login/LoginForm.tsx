@@ -12,7 +12,7 @@ import { toast } from "react-toastify";
 import FieldLogin from "./FieldLogin";
 
 const LoginForm = () => {
-  const { push } = useRouter();
+  const { push, refresh } = useRouter();
 
   const {
     handleSubmit,
@@ -52,6 +52,7 @@ const LoginForm = () => {
         reset();
 
         push("/wallpapers");
+        refresh();
       }
     } catch (err) {
       console.error(err);
