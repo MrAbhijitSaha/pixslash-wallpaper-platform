@@ -1,3 +1,4 @@
+import { Prisma } from "@generated/prisma/browser";
 import { LucideIcon } from "lucide-react";
 import { ReactNode } from "react";
 import z from "zod";
@@ -45,4 +46,30 @@ export type UserAvatarProps = {
   name: string | undefined;
   image: string | null | undefined;
   size?: "lg" | "sm" | "default";
+};
+
+export type WallpaperCardPropsType = Prisma.WallpaperGetPayload<{
+  include: {
+    user: {
+      select: {
+        id: true;
+        name: true;
+        image: true;
+      };
+    };
+
+    category: {
+      select: {
+        categoryName: true;
+      };
+    };
+    _count: {
+      select: {
+        likes: true;
+      };
+    };
+  };
+}> & {
+  isLiked: boolean;
+  isSaved: boolean;
 };

@@ -1,6 +1,6 @@
 "use client";
 
-import { WallpaperInfo } from "@/lib/demoWallpapersData";
+import { WallpaperCardPropsType } from "@/lib/type";
 import Masonry from "react-masonry-css";
 import WallpaperCard from "./WallpaperCard";
 
@@ -12,7 +12,7 @@ const breakpointColumns = {
 };
 
 type MasonryGridProps = {
-  wallpapers: WallpaperInfo[];
+  wallpapers: WallpaperCardPropsType[];
 };
 
 const MasonryGrid = ({ wallpapers }: MasonryGridProps) => {
