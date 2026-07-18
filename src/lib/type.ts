@@ -81,3 +81,32 @@ export type WallpaperCardPropsType = Prisma.WallpaperGetPayload<{
   isLiked: boolean;
   isSaved: boolean;
 };
+
+export type SingleWallpaperCardPropsType = Prisma.WallpaperGetPayload<{
+  omit: {
+    thumbnailUrl: true;
+    updatedAt: true;
+    categoryId: true;
+  };
+
+  include: {
+    category: {
+      select: {
+        categoryName: true;
+      };
+    };
+
+    user: {
+      select: {
+        name: true;
+        image: true;
+      };
+    };
+
+    _count: {
+      select: {
+        likes: true;
+      };
+    };
+  };
+}>;

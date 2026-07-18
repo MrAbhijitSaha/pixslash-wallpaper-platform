@@ -1,22 +1,24 @@
-import { WallpaperInfo } from "@/lib/demoWallpapersData";
-import { DownloadIcon, HeartIcon, Share2Icon } from "lucide-react";
+import { SingleWallpaperCardPropsType } from "@/lib/type";
+import { DownloadIcon, Share2Icon } from "lucide-react";
 import Image from "next/image";
+import UserAvatar from "../Dashboard/UserAvatar";
 import { Button } from "../shadcnui/button";
+import LikeButton from "./Actions/LikeButton ";
 
 type SingleWallpaperCardProps = {
-  wallpaperinfo: WallpaperInfo;
+  getDetails: SingleWallpaperCardPropsType;
+  isLiked?: boolean;
+  isSaved?: boolean;
 };
 
-const SingleWallpaperCard = ({ wallpaperinfo }: SingleWallpaperCardProps) => {
-  const wallpaper = wallpaperinfo;
-
+const SingleWallpaperCard = ({ getDetails }: SingleWallpaperCardProps) => {
   return (
     <div className="w-7xl space-y-5 rounded-xl border p-6 pt-0 shadow-none ring-0">
       <Image
-        src={`/${wallpaper.image}`}
-        alt={wallpaper.title}
-        height={wallpaper.height || 1080}
-        width={wallpaper.width || 720}
+        src={`/wallpapers/${getDetails.imageUrl}`}
+        alt={getDetails.title}
+        height={getDetails.height || 1080}
+        width={getDetails.width || 720}
         priority
         className="mx-auto max-h-120 w-full rounded-lg bg-transparent/10 object-contain"
       />
@@ -26,12 +28,12 @@ const SingleWallpaperCard = ({ wallpaperinfo }: SingleWallpaperCardProps) => {
 
         <div className="min-w-0">
           <h3 className="text-foreground truncate text-lg font-medium">
-            {wallpaper.title}
+            {getDetails.title}
           </h3>
 
-          {wallpaper.category?.categoryName && (
+          {getDetails.category?.categoryName && (
             <span className="bg-foreground/50 text-background mt-1 inline-block rounded-full px-2.5 py-0.5 text-xs font-medium tracking-wider uppercase">
-              {wallpaper.category.categoryName}
+              {getDetails.category.categoryName}
             </span>
           )}
         </div>
@@ -39,32 +41,32 @@ const SingleWallpaperCard = ({ wallpaperinfo }: SingleWallpaperCardProps) => {
         {/* Uploader + posted date */}
         <div className="flex justify-between">
           <div className="flex items-center gap-3">
-            <div className="bg-foreground/40 text-background flex h-9 w-9 items-center justify-center rounded-full text-sm font-medium">
-              {(wallpaper.user?.name ?? "?").charAt(0).toUpperCase()}
-            </div>
+            <UserAvatar
+              name={getDetails.user?.name}
+              image={getDetails.user?.image}
+              size="sm"
+            />
 
             <div className="min-w-0">
               <p className="text-foreground truncate text-sm font-medium">
-                {wallpaper.user?.name ?? "Unknown creator"}
+                {getDetails.user?.name ?? "Unknown creator"}
               </p>
               <p className="text-xs text-zinc-400">
                 Posted{" "}
-                {new Date(wallpaper.createdAt).toLocaleDateString("en-GB")}
+                {new Date(getDetails.createdAt).toLocaleDateString("en-GB")}
               </p>
             </div>
           </div>
 
           {/* like share and download buttons */}
           <div className="flex shrink-0 items-center gap-2">
-            <Button
-              variant={"default"}
-              size="sm"
-
-              className="text-foreground gap-2 bg-transparent text-sm hover:bg-transparent active:bg-transparent">
-              <HeartIcon className="h-4 w-4 fill-current text-red-500" />
-              <span>{wallpaper.likeCount}</span>
-              {"likes"}
-            </Button>
+            <LikeButton
+              wallpaperId={getDetails.id}
+              initialCount={getDetails._count.likes}
+              initialLiked={true}
+              // initialLiked={getDetails.isLiked}
+              tooltipContent="I love this"
+            />
 
             <Button
               className={
@@ -74,7 +76,7 @@ const SingleWallpaperCard = ({ wallpaperinfo }: SingleWallpaperCardProps) => {
 
               aria-label="Download Wallpaper">
               <DownloadIcon className="h-4 w-4" />
-              {wallpaper.downloadCount} {"downloads"}
+              {getDetails.downloadCount} {"downloads"}
             </Button>
 
             <Button
