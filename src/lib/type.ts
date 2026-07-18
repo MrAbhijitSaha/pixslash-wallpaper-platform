@@ -4,6 +4,7 @@ import { ReactNode } from "react";
 import z from "zod";
 import {
   loginSchema,
+  profileInformationSchema,
   registerSchema,
   wallpaperUploadSchema,
 } from "./zodSchema";
@@ -31,6 +32,10 @@ export type RegisterSchemaType = z.infer<typeof registerSchema>;
 export type LoginSchemaType = z.infer<typeof loginSchema>;
 
 export type WallpaperUploadSchemaType = z.infer<typeof wallpaperUploadSchema>;
+
+export type ProfileInformationSchemaType = z.infer<
+  typeof profileInformationSchema
+>;
 
 export type SideBarNavItemType = {
   label: string;
