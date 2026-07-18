@@ -58,7 +58,7 @@ const main = async () => {
     // Insert categories into the database
     const createdCategories = await Promise.all(
       categories.map((item) => {
-        prisma.category.upsert({
+        return prisma.category.upsert({
           where: { slug: item.slug },
           update: {},
           create: item,
