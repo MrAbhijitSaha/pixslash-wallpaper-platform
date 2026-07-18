@@ -1,5 +1,6 @@
 import AddImage from "@/components/Profile/AddImage";
 import AddProfileInformation from "@/components/Profile/AddProfileInformation";
+import ChangePassword from "@/components/Profile/ChangePassword";
 import {
   Card,
   CardContent,
@@ -65,6 +66,19 @@ const page = async ({ params }: PageProps) => {
           </div>
 
           <AddProfileInformation info={userInfo} />
+        </CardContent>
+      </Card>
+
+      {/* update password  */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-2xl font-semibold">
+            Change Password
+          </CardTitle>
+        </CardHeader>
+
+        <CardContent>
+          <ChangePassword />
         </CardContent>
       </Card>
     </section>

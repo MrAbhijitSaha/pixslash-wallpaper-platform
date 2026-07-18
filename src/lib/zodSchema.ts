@@ -70,3 +70,23 @@ export const profileInformationSchema = z.object({
     .optional()
     .or(z.literal("")),
 });
+
+export const changePasswordSchema = z
+  .object({
+    currentPassword: z
+      .string()
+      .max(128, { error: "Password must not exceed 128 characters" }),
+
+    newPassword: z
+      .string()
+      .min(8, { error: "Password must be at least 8 characters long" })
+      .max(128, { error: "Password must not exceed 128 characters" }),
+
+    confirmPassword: z
+      .string()
+      .min(1, { error: "Please confirm your password" }),
+  })
+  .refine((data) => data.newPassword === data.confirmPassword, {
+    error: "Password didn't match",
+    path: ["confirmPassword"],
+  });
