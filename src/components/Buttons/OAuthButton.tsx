@@ -14,7 +14,7 @@ const OAuthButton = ({ label, socialProviders }: OAuthButtonProps) => {
   const socialLoginHandler = async () => {
     await authClient.signIn.social({
       provider: socialProviders,
-      callbackURL: "/contribution",
+      callbackURL: "/overview",
     });
   };
 

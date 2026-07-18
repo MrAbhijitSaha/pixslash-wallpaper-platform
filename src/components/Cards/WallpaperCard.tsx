@@ -21,7 +21,7 @@ const WallpaperCard = ({ wallpaperinfo }: WallpaperCardProps) => {
     <Card className="group relative w-full overflow-hidden rounded-xl border-0 bg-zinc-900 p-0 shadow-md transition-shadow duration-300 hover:shadow-xl hover:shadow-black/30">
       <Link
         href={`/photo/${wallpaperinfo.slug}`}
-        className={`overflow-hidden ${aspectRatioClass} `}>
+        className={`relative overflow-hidden ${aspectRatioClass} `}>
         <Image
           src={`/wallpapers/${wallpaperinfo.imageUrl}`}
           alt={`${wallpaperinfo.title} `}

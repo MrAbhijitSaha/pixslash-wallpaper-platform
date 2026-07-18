@@ -1,6 +1,5 @@
 import AppSidebar from "@/components/Dashboard/AppSidebar";
 import PrivateHeader from "@/components/Header/PrivateHeader";
-
 import { SidebarInset, SidebarProvider } from "@/components/shadcnui/sidebar";
 import { auth } from "@/lib/auth";
 import { LayoutChildrenProps } from "@/lib/type";

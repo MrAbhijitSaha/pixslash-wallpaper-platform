@@ -1,9 +1,11 @@
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import { nextCookies } from "better-auth/next-js";
+import { admin } from "better-auth/plugins";
 import { hashPassword, verifyPassword } from "./argon2";
 import prisma from "./database/dbClient";
 import { serverEnv } from "./env/serverEnv";
+
 export const auth = betterAuth({
   secret: serverEnv.BETTER_AUTH_SECRET,
 
@@ -13,7 +15,7 @@ export const auth = betterAuth({
     provider: "sqlite", // or "mysql", "postgresql", ...etc
   }),
 
-  plugins: [nextCookies()],
+  plugins: [nextCookies(), admin()],
 
   emailAndPassword: {
     enabled: true,
