@@ -30,6 +30,11 @@ model User {
   saved      SavedPost[]
   downloads  Download[]
 
+  role       String?
+  banned     Boolean?  @default(false)
+  banReason  String?
+  banExpires DateTime?
+
   @@unique([email])
   @@unique([mobileNumber])
   @@map("user")
@@ -47,6 +52,8 @@ model Session {
   // Relations
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   userId String
+
+  impersonatedBy String?
 
   @@unique([token])
   @@index([userId])
@@ -73,6 +80,7 @@ model Account {
   userId String
 
   @@map("account")
+  @@index([userId])
 }
 
 model Verification {

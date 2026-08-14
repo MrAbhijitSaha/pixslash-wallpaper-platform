@@ -51,60 +51,60 @@ const page = async ({ params }: PageProps) => {
 
         {/* update img  */}
         <AddImage info={userInfo} />
+
+        {/* update information  */}
+        <Card className="">
+          <CardHeader>
+            <CardTitle className="text-2xl font-semibold">
+              Profile Information
+            </CardTitle>
+          </CardHeader>
+
+          <CardContent>
+            <div className="mb-4">
+              <CardTitle>Email</CardTitle>
+              <CardDescription>{userInfo.email}</CardDescription>
+            </div>
+
+            <AddProfileInformation info={userInfo} />
+          </CardContent>
+        </Card>
+
+        {/* update password  */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-2xl font-semibold">
+              Change Password
+            </CardTitle>
+          </CardHeader>
+
+          <CardContent>
+            <ChangePassword />
+          </CardContent>
+        </Card>
+
+        {/* Delete Account  */}
+
+        <Card className="">
+          <CardHeader className="flex items-center gap-3 text-red-400">
+            <Trash2Icon />
+            <CardTitle className="mt-1 text-xl font-semibold">
+              Danger Zone
+            </CardTitle>
+          </CardHeader>
+
+          <CardContent>
+            <CardDescription>
+              Once you delete your account, there is no going back. All your
+              wallpapers, collections, and data will be permanently removed.
+            </CardDescription>
+
+            <div className="mt-4 flex justify-end">
+              <DeleteAcount />
+            </div>
+          </CardContent>
+        </Card>
       </div>
-
-      {/* update information  */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-2xl font-semibold">
-            Profile Information
-          </CardTitle>
-        </CardHeader>
-
-        <CardContent>
-          <div className="mb-4">
-            <CardTitle>Email</CardTitle>
-            <CardDescription>{userInfo.email}</CardDescription>
-          </div>
-
-          <AddProfileInformation info={userInfo} />
-        </CardContent>
-      </Card>
-
-      {/* update password  */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-2xl font-semibold">
-            Change Password
-          </CardTitle>
-        </CardHeader>
-
-        <CardContent>
-          <ChangePassword />
-        </CardContent>
-      </Card>
-
-      {/* Delete Account  */}
-
-      <Card className="">
-        <CardHeader className="flex items-center gap-3 text-red-400">
-          <Trash2Icon />
-          <CardTitle className="mt-1 text-xl font-semibold">
-            Danger Zone
-          </CardTitle>
-        </CardHeader>
-
-        <CardContent>
-          <CardDescription>
-            Once you delete your account, there is no going back. All your
-            wallpapers, collections, and data will be permanently removed.
-          </CardDescription>
-
-          <div className="mt-4 flex justify-end">
-            <DeleteAcount />
-          </div>
-        </CardContent>
-      </Card>
     </section>
   );
 };
