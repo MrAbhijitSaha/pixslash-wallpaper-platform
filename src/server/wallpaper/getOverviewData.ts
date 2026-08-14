@@ -29,6 +29,10 @@ export async function getOverviewData() {
           select: { likes: true },
         },
         likes: {
+          take: 2,
+          orderBy: {
+            createdAt: "desc",
+          },
           include: {
             user: {
               select: {

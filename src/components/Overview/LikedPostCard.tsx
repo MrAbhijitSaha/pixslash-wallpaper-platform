@@ -28,7 +28,7 @@ export function LikedPostCard({
         href={`/photo/${slug}`}
         className="relative block aspect-video overflow-hidden bg-zinc-100 dark:bg-zinc-900">
         <Image
-          src={imageUrl.startsWith('/') ? imageUrl : `/wallpapers/${imageUrl}`}
+          src={imageUrl.startsWith("/") ? imageUrl : `/wallpapers/${imageUrl}`}
           alt={title}
           fill
           className="object-cover transition-transform duration-300 group-hover:scale-105"
@@ -45,7 +45,10 @@ export function LikedPostCard({
         </Link>
 
         <div className="mt-2 flex items-center gap-2">
-          {creator.image && (creator.image.startsWith('/') || creator.image.startsWith('http')) ?
+          {(
+            creator.image &&
+            (creator.image.startsWith("/") || creator.image.startsWith("http"))
+          ) ?
             <Image
               src={creator.image}
               alt={creator.name}
@@ -65,7 +68,9 @@ export function LikedPostCard({
         </div>
 
         <div className="mt-3 flex items-center gap-1.5 text-zinc-600 dark:text-zinc-400">
-          <Heart className="h-4 w-4 fill-current text-red-500" />
+          <Heart
+            className={`h-4 w-4 fill-current ${likeCount !== 0 ? "text-red-500" : ""}`}
+          />
           <span className="text-sm font-medium">
             {likeCount} {likeCount === 1 ? "like" : "likes"}
           </span>

@@ -32,7 +32,7 @@ export function UserPostCard({
         href={`/photo/${slug}`}
         className="relative block aspect-video overflow-hidden bg-zinc-100 dark:bg-zinc-900">
         <Image
-          src={imageUrl.startsWith('/') ? imageUrl : `/wallpapers/${imageUrl}`}
+          src={imageUrl.startsWith("/") ? imageUrl : `/wallpapers/${imageUrl}`}
           alt={title}
           fill
           className="object-cover transition-transform duration-300 group-hover:scale-105"
@@ -55,13 +55,15 @@ export function UserPostCard({
 
         <div className="mt-3 flex items-center justify-between">
           <div className="flex items-center gap-1.5 text-zinc-600 dark:text-zinc-400">
-            <Heart className="h-4 w-4 fill-current text-red-500" />
+            <Heart
+              className={`h-4 w-4 fill-current ${likeCount !== 0 ? "text-red-500" : ""}`}
+            />
             <span className="text-sm font-medium">{likeCount}</span>
           </div>
           {likeCount > 0 && (
             <LikersPreview
               likers={likers}
-              maxDisplay={2}
+              maxDisplay={likeCount}
             />
           )}
         </div>
