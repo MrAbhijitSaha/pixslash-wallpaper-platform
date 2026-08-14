@@ -8,12 +8,12 @@ interface Liker {
 
 interface LikersPreviewProps {
   likers: Liker[];
-  maxDisplay?: number;
+  totalLikeCount: number;
 }
 
-export function LikersPreview({ likers, maxDisplay = 3 }: LikersPreviewProps) {
-  const displayedLikers = likers.slice(0, maxDisplay);
-  const remainingCount = Math.max(0, likers.length - maxDisplay);
+export function LikersPreview({ likers, totalLikeCount }: LikersPreviewProps) {
+  const displayedLikers = likers;
+  const remainingCount = Math.max(0, totalLikeCount - displayedLikers.length);
 
   if (likers.length === 0) {
     return (
@@ -53,7 +53,7 @@ export function LikersPreview({ likers, maxDisplay = 3 }: LikersPreviewProps) {
           +{remainingCount} more
         </span>
       : <span className="text-xs text-zinc-600 dark:text-zinc-400">
-          {likers.length} {likers.length === 1 ? "like" : "likes"}
+          {totalLikeCount} {totalLikeCount === 1 ? "like" : "likes"}
         </span>
       }
     </div>
