@@ -94,9 +94,6 @@ export async function getOverviewData() {
     };
   } catch (error) {
     console.error("Failed to fetch overview data:", error);
-    return {
-      success: false,
-      message: "Failed to fetch overview data.",
-    };
+    throw new Error("Failed to fetch overview data.");
   }
 }
