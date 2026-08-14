@@ -63,7 +63,7 @@ export function UserPostCard({
           {likeCount > 0 && (
             <LikersPreview
               likers={likers}
-              maxDisplay={likeCount}
+              totalLikeCount={likeCount}
             />
           )}
         </div>
