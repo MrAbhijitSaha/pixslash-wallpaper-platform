@@ -1,8 +1,8 @@
 import { SingleWallpaperCardPropsType } from "@/lib/type";
-import { DownloadIcon, Share2Icon } from "lucide-react";
 import Image from "next/image";
+import DownloadWallpaperButton from "../Buttons/DownloadWallpaperButton";
+import ShareWallpaperButton from "../Buttons/ShareWallpaperButton";
 import UserAvatar from "../Dashboard/UserAvatar";
-import { Button } from "../shadcnui/button";
 import LikeButton from "./Actions/LikeButton ";
 
 type SingleWallpaperCardProps = {
@@ -69,27 +69,14 @@ const SingleWallpaperCard = ({
               tooltipContent="I love this"
             />
 
-            <Button
-              className={
-                "text-foreground gap-2 rounded-full border-0 bg-transparent p-2 text-sm hover:bg-transparent active:bg-transparent"
-              }
-              variant="default"
+            <DownloadWallpaperButton
+              imageUrl={getDetails.imageUrl}
+              slug={getDetails.slug}
+              format={getDetails.format}
+              downloadCount={getDetails.downloadCount}
+            />
 
-              aria-label="Download Wallpaper">
-              <DownloadIcon className="h-4 w-4" />
-              {getDetails.downloadCount} {"downloads"}
-            </Button>
-
-            <Button
-              type="button"
-              variant="secondary"
-              size="default"
-
-              aria-label="Share wallpaper"
-              className={`text-foreground bg-transparent text-sm hover:bg-transparent active:bg-transparent`}>
-              <Share2Icon className="h-4 w-4" />
-              share
-            </Button>
+            <ShareWallpaperButton url={`/wallpaper/${getDetails.slug}`} />
           </div>
         </div>
       </div>
