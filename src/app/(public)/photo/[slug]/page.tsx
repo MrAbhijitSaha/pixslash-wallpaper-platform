@@ -61,20 +61,20 @@ const page = async ({ params }: PageProps) => {
     isLiked = !!like;
   }
 
-  let isSaved = false;
+  // let isSaved = false;
 
-  if (session?.user.id) {
-    const save = await prisma.savedPost.findUnique({
-      where: {
-        userId_wallpaperId: {
-          userId: session.user.id,
-          wallpaperId: wallpaper.id,
-        },
-      },
-    });
+  // if (session?.user.id) {
+  //   const save = await prisma.savedPost.findUnique({
+  //     where: {
+  //       userId_wallpaperId: {
+  //         userId: session.user.id,
+  //         wallpaperId: wallpaper.id,
+  //       },
+  //     },
+  //   });
 
-    isSaved = !!save;
-  }
+  //   isSaved = !!save;
+  // }
 
   return (
     <div className="">
