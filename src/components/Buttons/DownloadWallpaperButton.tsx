@@ -16,7 +16,7 @@ const DownloadWallpaperButton = ({
 }: DownloadWallpaperButtonProps) => {
   return (
     <a
-      href={imageUrl}
+      href={`/wallpapers/${imageUrl}`}
       download={`${slug}.${format || "jpg"}`}
       aria-label="Download Wallpaper">
       <Button
