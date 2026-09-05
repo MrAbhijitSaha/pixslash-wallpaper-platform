@@ -76,7 +76,7 @@ const SingleWallpaperCard = ({
               downloadCount={getDetails.downloadCount}
             />
 
-            <ShareWallpaperButton url={`/wallpaper/${getDetails.slug}`} />
+            <ShareWallpaperButton url={`/photo/${getDetails.slug}`} />
           </div>
         </div>
       </div>
