@@ -9,9 +9,11 @@ interface ShareWallpaperButtonProps {
 
 const ShareWallpaperButton = ({ url }: ShareWallpaperButtonProps) => {
   const handleShare = async () => {
+    const shareUrl = new URL(url, window.location.origin).href;
+
     if (navigator.share) {
       try {
-        await navigator.share({ url });
+        await navigator.share({ url: shareUrl });
         return;
       } catch (error) {
         // The user intentionally dismissed the share sheet.
@@ -24,7 +26,7 @@ const ShareWallpaperButton = ({ url }: ShareWallpaperButtonProps) => {
     }
 
     try {
-      await navigator.clipboard.writeText(url);
+      await navigator.clipboard.writeText(shareUrl);
     } catch (error) {
       console.error("Failed to copy wallpaper URL:", error);
     }
