@@ -1,8 +1,7 @@
 import { WallpaperCardPropsType } from "@/lib/type";
-import { DownloadIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "../shadcnui/button";
+import DownloadWallpaperButton from "../Buttons/DownloadWallpaperButton";
 import { Card } from "../shadcnui/card";
 import LikeButton from "./Actions/LikeButton ";
 import SaveButton from "./Actions/SaveButton";
@@ -60,15 +59,12 @@ const WallpaperCard = ({ wallpaperinfo }: WallpaperCardProps) => {
             tooltipContent="I love this"
           />
 
-          <Button
-            className={
-              "bg-transparent text-white hover:bg-transparent active:bg-transparent"
-            }
-            variant="default"
-            aria-label="Download Wallpaper">
-            <DownloadIcon className="h-4 w-4" />
-            {wallpaperinfo.downloadCount}
-          </Button>
+          <DownloadWallpaperButton
+            imageUrl={wallpaperinfo.imageUrl}
+            slug={wallpaperinfo.slug}
+            format={wallpaperinfo.format}
+            downloadCount={wallpaperinfo.downloadCount}
+          />
         </div>
       </div>
     </Card>
