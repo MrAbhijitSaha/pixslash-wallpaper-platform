@@ -1,5 +1,4 @@
 import { DownloadIcon } from "lucide-react";
-import { Button } from "../shadcnui/button";
 
 interface DownloadWallpaperButtonProps {
   imageUrl: string;
@@ -18,14 +17,10 @@ const DownloadWallpaperButton = ({
     <a
       href={`/wallpapers/${imageUrl}`}
       download={`${slug}.${format || "jpg"}`}
-      aria-label="Download Wallpaper">
-      <Button
-        type="button"
-        className="bg-transparent text-white hover:bg-transparent active:bg-transparent"
-        variant="default">
-        <DownloadIcon className="h-4 w-4" />
-        {downloadCount} Downloads
-      </Button>
+      aria-label="Download Wallpaper"
+      className="inline-flex items-center justify-center gap-2 rounded-md bg-transparent px-4 py-2 text-sm font-medium text-white hover:bg-transparent active:bg-transparent">
+      <DownloadIcon className="h-4 w-4" />
+      {downloadCount} Downloads
     </a>
   );
 };
